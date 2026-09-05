@@ -1,7 +1,6 @@
 "use client";
 
 import { logoutAction } from "@/app/actions/auth";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 interface DashHeaderProps {
   username: string;
@@ -38,8 +37,6 @@ export function DashHeader({ username, onToggleSidebar }: DashHeaderProps) {
 
       {/* Right: User info + Logout */}
       <div className="flex items-center gap-3">
-        <ThemeToggle className="hidden sm:flex" />
-
         <div className="flex items-center gap-3 pl-3 sm:border-l-[2px] border-border/30">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-secondary border-[2px] border-border flex items-center justify-center shrink-0">

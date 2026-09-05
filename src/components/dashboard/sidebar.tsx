@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 const navItems = [
   { href: "/dashboard", label: "Overview", icon: GridIcon },
@@ -31,7 +30,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       <aside
         className={`
           fixed lg:static inset-y-0 left-0 z-50
-          w-64 bg-surface border-r-[2.5px] border-border
+          w-64 bg-surface border-r-[2.5px] border-border invoice-rule-vertical
           flex flex-col
           transform transition-transform duration-300 lg:translate-x-0
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
@@ -93,10 +92,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           })}
         </nav>
 
-        {/* Bottom Area (Mobile theme toggle) */}
-        <div className="p-4 border-t-[2.5px] border-border sm:hidden flex items-center justify-between">
-          <span className="text-xs font-bold text-muted">Theme</span>
-          <ThemeToggle />
+        {/* Footer actions */}
+        <div className="p-4 border-t-[2.5px] border-border bg-background-muted flex items-center justify-between">
+          <span className="text-xs font-bold text-muted">DashBill v1.0</span>
         </div>
       </aside>
     </>

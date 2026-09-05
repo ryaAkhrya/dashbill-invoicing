@@ -114,7 +114,9 @@ function ProductPreview() {
 
 export function Hero() {
   return (
-    <section className="relative pt-12 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 overflow-hidden ledger-lines">
+    <section className="relative pt-12 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 overflow-hidden ledger-lines invoice-rule-vertical">
+      <div className="registration-mark-tl hidden lg:block" />
+      <div className="registration-mark-br hidden lg:block" />
       {/* Decorative vertical ledger line on the left (desktop) */}
       <div className="hidden lg:block absolute top-0 bottom-0 left-[8%] w-[1px] bg-border/5 z-0" aria-hidden="true" />
       

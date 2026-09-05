@@ -34,7 +34,9 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-28 sm:py-32 px-4 sm:px-6 bg-background border-y-[2.5px] border-border mt-28 ledger-pattern">
+    <section id="faq" className="py-28 sm:py-32 px-4 sm:px-6 bg-background border-y-[2.5px] border-border mt-28 ledger-lines relative">
+      <div className="registration-mark-tl hidden lg:block" />
+      <div className="registration-mark-br hidden lg:block" />
       <div className="max-w-2xl mx-auto">
         <div className="mb-14 animate-fade-in-up">
           <div

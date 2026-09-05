@@ -44,7 +44,9 @@ export default async function NewInvoicePage() {
         </div>
       </div>
       
-      <InvoiceForm clients={result.data || []} />
+      <div className="document-stack bg-surface border-[2.5px] border-border p-6 sm:p-8">
+        <InvoiceForm clients={result.data || []} />
+      </div>
     </div>
   );
 }

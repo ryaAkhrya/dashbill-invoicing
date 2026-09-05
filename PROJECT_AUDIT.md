@@ -435,25 +435,34 @@ Next.js App Router. Server Components handle layouts and secure data fetching. C
 ## WORKING FEATURES
 Authentication (username + password, synthetic email hidden), Dashboard Overview (metric hierarchy frozen), Clients CRUD, Invoices CRUD, PDF Export, Status Tracking, Dark Mode, Theme Toggle.
 
-## DESIGN SYSTEM — FINAL STATE
+## DESIGN SYSTEM — FINAL STATE (SINGLE THEME)
 - **Philosophy**: Bold Modern SaaS + Playful Brutalism + Kinetic UI + Invoice Workspace/Ledger
-- **Background System**: Uses subtle `ledger-pattern` (40px grids) and `ledger-lines` to create the feeling of a financial document workspace, removing the "empty white/black background" feel.
-- **Light Mode**: Warm off-white `#f7f6f2` bg, pitch black `#111` borders + shadows. Section rhythm uses shifts between `#f7f6f2` (bg), `#eeecea` (muted), and `#ffffff` (surface).
-- **Dark Mode**: Layered warm charcoal surfaces (`#0F100E` → `#131410` → `#181914` → `#1D1E19` → `#23241E`), cream text `#F1EFE6`, soft border `rgba(241,239,230,0.16)`, dark shadow `rgba(0,0,0,0.65)`.
+- **Single Theme Decision**: Dark mode has been completely removed to focus on a single, curated, high-quality visual experience.
+- **Background System**: Uses subtle `ledger-pattern` (40px grids), `ledger-lines`, `invoice-rule-vertical`, and registration marks to create the feeling of a financial document workspace, removing the "empty canvas" feel without relying on AI slop.
+- **Color Palette**: Warm off-white `#f7f6f2` bg, `#eeecea` muted, `#ffffff` surface, pitch black `#111` borders + shadows.
 - **Primary**: Vibrant yellow `#FFE600`
 - **Animation easing**: `cubic-bezier(0.22, 1, 0.36, 1)` — entrance 400-850ms, translate 8-16px max
 - **Reduced motion**: respected via `@media (prefers-reduced-motion: reduce)`
 
+## SECURITY ARCHITECTURE & AUDIT
+- **Authentication**: Username/password. Synthetic email hidden server-side.
+- **Authorization**: Server Actions strictly check `supabase.auth.getUser()`.
+- **Data Isolation (RLS)**: Row Level Security is robust. `invoices` and `invoice_items` verify ownership via `clients` table join (`clients.user_id = auth.uid()`).
+- **Input Validation**: Manual server-side validation in actions. Prevents negative prices/quantities.
+- **XSS**: React safely escapes text. PDF generation uses `@react-pdf/renderer` which is XSS-safe by design.
+- **Security Hardening Applied**: Added `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, and `Referrer-Policy: strict-origin-when-cross-origin` to `next.config.ts` to prevent clickjacking and MIME sniffing.
+- **Unresolved Recommendations**: Consider migrating manual input validation to Zod for more exhaustive schema validation. Add rate-limiting to auth endpoints at the infrastructure level.
+
 ## LANDING PAGE — FINAL STATE
-- **Header**: Desktop shows logo + nav links + theme toggle + Login + Start Free. Hamburger `lg:hidden`. Mobile shows logo + hamburger only, dropdown reveals full nav.
-- **Hero**: `clamp()` font-size, staggered entrance animations (eyebrow → h1 → desc → CTAs → product), floating cards contained within relative parent (no overflow on 320px+)
-- **Features**: How-It-Works in 4-column grid (desktop) / vertical (mobile), then mixed-hierarchy feature grid (1 large + 3 small), overlapping CTA panel
-- **FAQ**: CSS grid-template-rows accordion, `cubic-bezier(0.22,1,0.36,1)` easing, staggered entrance
-- **Footer**: Dark `bg-foreground` anchor with status strip, version badge
+- **Header**: Desktop shows logo + nav links + Login + Start Free. Hamburger `lg:hidden`. Mobile shows logo + hamburger only, dropdown reveals full nav.
+- **Hero**: `clamp()` font-size, staggered entrance animations, floating cards contained within relative parent. Art direction uses `invoice-rule-vertical` and `ledger-lines`.
+- **Features**: How-It-Works uses `dot-pattern` and `ledger-lines`. Feature grid uses `bg-background-muted`.
+- **FAQ**: Uses `ledger-lines` and registration marks to close the loop before footer.
+- **Footer**: Dark `bg-foreground` anchor with status strip.
 
 ## NAVBAR BEHAVIOR
-- **Desktop (`lg+`)**: `hidden lg:flex` — full navigation visible, hamburger hidden
-- **Mobile (`<lg`)**: hamburger button visible, triggers animated `max-h` dropdown sheet, ThemeToggle inside sheet
+- **Desktop (`lg+`)**: `hidden lg:flex` — full navigation visible, hamburger hidden. Theme toggle removed.
+- **Mobile (`<lg`)**: hamburger button visible, triggers animated `max-h` dropdown sheet.
 
 ## DASHBOARD — FROZEN
 Dashboard composition is intentionally frozen at current state:

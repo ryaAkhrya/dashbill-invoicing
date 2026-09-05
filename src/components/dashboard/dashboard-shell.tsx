@@ -23,7 +23,9 @@ export function DashboardShell({ children, username }: DashboardShellProps) {
           username={username}
           onToggleSidebar={() => setSidebarOpen((prev) => !prev)}
         />
-        <main className="flex-1 overflow-auto p-6 sm:p-10 dot-pattern">
+        <main className="flex-1 overflow-auto p-6 sm:p-10 ledger-pattern invoice-rule-vertical relative">
+          <div className="registration-mark-tl hidden sm:block" />
+          <div className="registration-mark-br hidden sm:block" />
           {children}
         </main>
       </div>

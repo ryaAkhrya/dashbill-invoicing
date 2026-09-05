@@ -69,37 +69,7 @@
   --shadow-xl: 8px 8px 0px var(--shadow-color);
 }
 
-/* --- CSS Variables: Dark Mode --- */
-.dark {
-  --background: #0F100E;
-  --background-muted: #131410;
-  --surface: #181914;
-  --surface-elevated: #1D1E19;
-  --surface-strong: #23241E;
-  --foreground: #F1EFE6;
-  --foreground-secondary: #C8C6BC;
-  --muted: #96968D;
-  --border-subtle: rgba(241, 239, 230, 0.10);
-  --border: rgba(241, 239, 230, 0.16);
-  --border-strong: rgba(241, 239, 230, 0.26);
 
-  --primary: #ffe600;
-  --primary-hover: #f0d800;
-
-  --success: #a3e635; /* Muted lime */
-  --warning: #fbbf24; /* Warm amber */
-  --danger: #f87171;  /* Coral */
-  --info: #3b82f6;    /* Medium electric blue */
-  --secondary: #a78bfa; /* Soft lavender */
-  --accent-pink: #f472b6;
-
-  --shadow-color: rgba(0, 0, 0, 0.65);
-
-  --shadow-sm: 2px 2px 0px var(--shadow-color);
-  --shadow-md: 4px 4px 0px var(--shadow-color);
-  --shadow-lg: 6px 6px 0px var(--shadow-color);
-  --shadow-xl: 8px 8px 0px var(--shadow-color);
-}
 
 /* ===========================
    Base Styles
@@ -133,10 +103,6 @@ body {
   opacity: 1;
 }
 
-.dark .dot-pattern {
-  background-image: radial-gradient(rgba(241, 239, 230, 0.12) 0.8px, transparent 0.8px);
-}
-
 .ledger-pattern {
   background-image: 
     linear-gradient(rgba(17, 17, 17, 0.04) 1px, transparent 1px),
@@ -145,20 +111,63 @@ body {
   background-position: -1px -1px, -1px -1px;
 }
 
-.dark .ledger-pattern {
-  background-image: 
-    linear-gradient(rgba(241, 239, 230, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(241, 239, 230, 0.05) 1px, transparent 1px);
-}
-
 .ledger-lines {
   background-image: linear-gradient(rgba(17, 17, 17, 0.04) 1px, transparent 1px);
   background-size: 100% 40px;
   background-position: 0 -1px;
 }
 
-.dark .ledger-lines {
-  background-image: linear-gradient(rgba(241, 239, 230, 0.05) 1px, transparent 1px);
+/* --- Invoice Desk Specific Patterns --- */
+.registration-mark-tl {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 12px;
+  height: 12px;
+  border-top: 1.5px solid var(--muted);
+  border-left: 1.5px solid var(--muted);
+  opacity: 0.4;
+  pointer-events: none;
+}
+.registration-mark-br {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 12px;
+  height: 12px;
+  border-bottom: 1.5px solid var(--muted);
+  border-right: 1.5px solid var(--muted);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.invoice-rule-vertical {
+  background-image: linear-gradient(90deg, rgba(17, 17, 17, 0.03) 1px, transparent 1px);
+  background-size: 80px 100%;
+}
+
+.document-stack {
+  position: relative;
+}
+.document-stack::before {
+  content: "";
+  position: absolute;
+  inset: -8px -6px -12px -4px;
+  background: var(--surface-elevated);
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  transform: rotate(-0.5deg);
+  z-index: -1;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.02);
+}
+.document-stack::after {
+  content: "";
+  position: absolute;
+  inset: -4px -8px -6px -6px;
+  background: var(--background-muted);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  transform: rotate(0.8deg);
+  z-index: -2;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.02);
 }
 
 /* ===========================

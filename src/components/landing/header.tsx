@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -64,8 +63,7 @@ export function Header() {
             </a>
           </nav>
 
-          <div className="flex items-center gap-4 border-l-[2px] border-border/20 pl-8">
-            <ThemeToggle />
+          <div className="flex items-center gap-4 border-l-[2px] border-border/20 pl-6">
             <Link
               href="/login"
               className="text-sm font-bold text-foreground hover:text-primary transition-colors"
@@ -139,11 +137,6 @@ export function Header() {
               FAQ
             </a>
           </nav>
-          
-          <div className="flex items-center justify-between pb-2">
-            <span className="text-sm font-bold text-muted uppercase tracking-wider">Appearance</span>
-            <ThemeToggle />
-          </div>
 
           <div className="flex flex-col gap-3 pt-2">
             <Link
